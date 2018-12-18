@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ignite configuration for a mule node -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd        
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:property-placeholder location="classpath:ignite.node.${env}.properties" />
+
+	<!-- Imports default Ignite configuration -->
+	<import resource="ignite-default-config.xml" />
+
+	<bean parent="ignite.cfg">
+	
+		<!-- Add some cluster node metadata - useful to send a distributed event to selected cluster nodes based on metadata-->
+	    <property name="userAttributes">
+	        <map>
+	            <entry key="ROLE" value="IGNITE_SERVER_NODE"/>
+	        </map>
+	    </property>
+		
+  		<!-- Explicitly configure TCP discovery SPI -->
+		  <property name="discoverySpi">
+		    <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+				<!-- Initial local port to listen to. -->
+				<property name="localPort" value="${ignite.this.node.ipfinder.localport}"/>
+				<!-- Changing local port range. This is an optional action. -->
+				<property name="localPortRange" value="${ignite.this.node.ipfinder.portrange}"/>
+				<property name="ipFinder" ref="${ignite.this.node.ipfinder.bean}"/>
+			</bean>
+		  </property> 
+		  
+		<!-- Durable memory configuration for this Apache Ignite node. The durable memory is a manageable off-heap based memory architecture-->
+		<property name="dataStorageConfiguration">
+			<bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+			
+				<!-- Default initial size of a memory chunk for the system cache (40 MB) -->
+		         <property name="systemRegionInitialSize" value="#{40l * 1024 * 1024}"/>
+		
+				<!-- Default max size of a memory chunk for the system cache (100 MB) -->
+				 <property name="systemRegionMaxSize" value="#{100l * 1024 * 1024}"/>
+
+			     <!-- Enable write throttling. -->
+			     <property name="writeThrottlingEnabled" value="true"/>
+
+		         <!-- Set the page size to 4 KB -->
+      			<property name="pageSize" value="#{4 * 1024}"/>
+
+				<!-- Default data region for caches-->
+		         <property name="defaultDataRegionConfiguration">
+		              <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+		              	<!-- This name is assigned to default Dataregion if no user-defined default MemPlc is specified -->
+		                  <property name="name" value="default"/>
+		                  <!-- Data region start size (256 MB). Default data region start size (100 MB) -->
+
+		                  <property name="initialSize" value="#{100l * 1024 * 1024}"/>
+		                  
+		                  <!-- Data region's max size 512MB. Default data region's max size is 20% of physical memory available on current machine.-->
+		                  <property name="maxSize" value="#{512l * 1024 * 1024}"/>
+
+		                  <!-- Increasing the buffer size to 1 GB. default 256MB-->
+					      <property name="checkpointPageBufferSize" value="#{256L * 1024 * 1024}"/>
+
+		                  <!-- Enabling Ignite Native Persistence on disk -->
+						  <property name="persistenceEnabled" value="${ignite.this.node.persistence.enabled}" />
+		              </bean>
+		         </property>
+
+				 <!-- another data regions -->
+			      <property name="dataRegionConfigurations">
+			        <list>
+			          <!--
+			              Defining a data region that will consume up to 256 MB of RAM and persistence disabled.
+			          -->
+			          <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+			            <!-- Custom region name. -->
+			            <property name="name" value="onMemory"/>
+			
+			            <!-- 100 MB initial size. -->
+			            <property name="initialSize" value="#{100L * 1024 * 1024}"/>
+			
+			            <!-- 500 MB maximum size. -->
+			            <property name="maxSize" value="#{256L * 1024 * 1024}"/>
+			
+			            <!-- Disable persistence for the region. -->
+			            <property name="persistenceEnabled" value="false"/>
+			          </bean>
+			          <!--
+			              Defining a data region that will consume up to 256 MB of RAM, 
+			              will have eviction and persistence enabled.
+			          -->
+			          <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+			            <!-- Custom region name. -->
+			            <property name="name" value="onMemoryWithPersistence"/>
+			
+			            <!-- 100 MB initial size. -->
+			            <property name="initialSize" value="#{100L * 1024 * 1024}"/>
+			
+			            <!-- 500 MB maximum size. -->
+			            <property name="maxSize" value="#{256L * 1024 * 1024}"/>
+			
+			            <!-- Disable persistence for the region. -->
+			            <property name="persistenceEnabled" value="true"/>
+			          </bean>			          
+			        </list>
+			      </property>
+      				
+				<!--  The changes are guaranteed to be persisted to disk for 
+					every atomic write or transactional commit. -->
+				<property name="walMode" value="${ignite.this.node.persistence.walMode}" />
+				
+				<!-- Sets a path to the root directory where data and indexes are to 
+					be persisted. It's assumed the directory is on a separated SSD. -->
+				<property name="storagePath" value="${ignite.this.node.persistence.storagePath}" />
+				
+				<!-- Sets a path to the directory where WAL is stored. It's assumed the 
+					directory is on a separated HDD. -->
+				<property name="walPath" value="${ignite.this.node.persistence.walPath}" />
+				
+				<!-- Sets a path to the directory where WAL archive is stored. The directory 
+					is on the same HDD as the WAL. -->
+				<property name="walArchivePath" value="${ignite.this.node.persistence.walArchivePath}" />
+				
+				<property name="walHistorySize" value="2" />
+			</bean>
+		</property>	
+
+	</bean>
+</beans>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+	
+   <!-- Annotation Based Configuration -->	
+   <bean id="shapesCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="shapes" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>java.lang.Integer</value>
+				<value>com.hawkore.ignite.examples.entities.shapes.Block</value>
+				
+				<value>java.lang.String</value>
+				<value>com.hawkore.ignite.examples.entities.shapes.Border</value>
+					
+				<value>java.lang.String</value>
+				<value>com.hawkore.ignite.examples.entities.shapes.City</value>								
+			</array>
+		</property>	
+	</bean>
+	
+	<!-- Annotation Based Configuration -->
+	<bean id="testCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="test" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>com.hawkore.ignite.examples.entities.users.UserKey</value>
+				<value>com.hawkore.ignite.examples.entities.users.User</value>
+				
+				<value>com.hawkore.ignite.examples.entities.census.CensusKey</value>
+				<value>com.hawkore.ignite.examples.entities.census.Census</value>				
+			</array>
+		</property>	
+	</bean>
+
+	<!-- Annotation Based Configuration -->
+	<bean id="tweetsCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="tweets" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>com.hawkore.ignite.examples.entities.tweets.TweetKey</value>
+				<value>com.hawkore.ignite.examples.entities.tweets.Tweet</value>
+			</array>
+		</property>	
+	</bean>
+	
+	<!-- Annotation Based Configuration -->
+	<bean id="poisCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="pois" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>com.hawkore.ignite.examples.entities.pois.PoiKey</value>
+				<value>com.hawkore.ignite.examples.entities.pois.Poi</value>
+			</array>
+		</property>	
+	</bean>	
+	
+	
+	<!-- Annotation Based Configuration for Person-->
+	<bean id="persons2Cache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="PERSONS2" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>com.hawkore.ignite.examples.entities.person2.PersonKey</value>
+				<value>com.hawkore.ignite.examples.entities.person2.Person</value>
+			</array>
+		</property>	
+	</bean>	
+
+	<!-- Annotation Based Configuration for BlogEntry-->
+	<bean id="blogCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="blog" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>com.hawkore.ignite.examples.entities.blog.BlogEntryKey</value>
+				<value>com.hawkore.ignite.examples.entities.blog.BlogEntry</value>
+			</array>
+		</property>	
+	</bean>	
+	
+		<!-- Annotation Based Configuration for Profile-->
+	<bean id="profilesCache" class="org.apache.ignite.configuration.CacheConfiguration">
+		<property name="name" value="profiles" />
+		<property name="rebalanceMode" value="ASYNC"/> 
+		<property name="cacheMode" value="PARTITIONED" />
+		<property name="indexedTypes">
+			<array>
+				<value>java.lang.String</value>
+				<value>com.hawkore.ignite.examples.entities.profiles.Profile</value>
+			</array>
+		</property>	
+	</bean>
+	
+	<!-- QueryEntity Based Configuration for Person. As you know this could be do it programmatically :) -->	
+	<bean id="persons1Cache" class="org.apache.ignite.configuration.CacheConfiguration">
+	    <property name="name" value="PERSONS1"/>
+	    <!-- Configure query entities -->
+	    <property name="queryEntities">
+	        <list>
+	            <bean class="org.apache.ignite.cache.QueryEntity">
+	
+		                <!-- Setting indexed type's key class -->
+	                <property name="keyType" 
+	                		 value="com.hawkore.ignite.examples.entities.person.PersonKey"/>
+		
+		                <!-- Setting indexed type's value class -->
+	                <property name="valueType"
+	                          value="com.hawkore.ignite.examples.entities.person.Person"/>
+	
+	                <!-- Defining primary key fields -->
+	                <property name="keyFields">
+		                <set>
+		                	<value>name</value>
+		                	<value>gender</value>
+		                	<value>animal</value>
+		                	<value>age</value>	           
+		                </set>
+	                </property>
+	
+	                <!-- Defining fields that will be either indexed or queryable.
+	                Indexed fields are added to 'indexes' list below.-->
+	                <property name="fields">
+	                    <map>
+	                    	<entry key="name" value="java.lang.String"/>
+	                        <entry key="gender" value="java.lang.String"/>
+	                        <entry key="animal" value="java.lang.String"/>                       
+	                        <entry key="age" value="java.lang.Integer"/>
+	                        <entry key="food" value="java.lang.String"/>
+	                        <entry key="latitude" value="java.lang.Float"/>
+	                        <entry key="longitude" value="java.lang.Float"/>                       
+	                        <entry key="number" value="java.lang.Integer"/>
+	                        <entry key="bool" value="java.lang.Boolean"/>
+	                        <entry key="phrase" value="java.lang.String"/>        
+	                        <entry key="date" value="java.lang.String"/>
+	                        <entry key="start_date" value="java.lang.String"/>
+	                        <entry key="stop_date" value="java.lang.String"/>                       
+	                    </map>
+	                </property>
+
+	                <!-- Defining advanced lucene index configuration.-->	
+					<property name="luceneIndexOptions">
+					    <value><![CDATA[{
+					    'version':'0',
+					    'refresh_seconds':'60',
+					    'directory_path':'',
+					    'ram_buffer_mb':'10',
+					    'max_cached_mb':'-1',
+					    'partitioner':'{"type":"token","partitions":10}',
+					    'optimizer_enabled':'true',
+					    'optimizer_schedule':'0 1 * * *',
+					    'schema':'{
+					    		   "default_analyzer":"standard",
+					    		   "analyzers":{
+					    				"my_custom_analyzer":{"type":"snowball","language":"Spanish","stopwords":"el,la,lo,loas,las,a,ante,bajo,cabe,con,contra"}
+					    				},
+					    		   "fields":{
+					    		   		"duration":{"type":"date_range","from":"start_date","to":"stop_date","validated":false,"pattern":"yyyy/MM/dd"},
+					    		   		"place":{"type":"geo_point","latitude":"latitude","longitude":"longitude"},
+					    		   		"date":{"type":"date","validated":true,"column":"date","pattern":"yyyy/MM/dd"},
+					    		   		"number":{"type":"integer","validated":false,"column":"number","boost":1.0},
+					    		   		"gender":{"type":"string","validated":true,"column":"gender","case_sensitive":true},
+					    		   		"bool":{"type":"boolean","validated":false,"column":"bool"},
+					    		   		"phrase":{"type":"text","validated":false,"column":"phrase","analyzer":"my_custom_analyzer"},
+					    		   		"name":{"type":"string","validated":false,"column":"name","case_sensitive":true},
+					    		   		"animal":{"type":"string","validated":false,"column":"animal","case_sensitive":true},
+					    		   		"age":{"type":"integer","validated":false,"column":"age","boost":1.0},
+					    		   		"food":{"type":"string","validated":false,"column":"food","case_sensitive":true}
+					    		   		}
+					    		  }'
+					     }]]></value>
+					</property>
+	
+	                <!-- Defining indexed fields.-->
+	                <property name="indexes">
+	                    <list>
+	                        <!-- Single field (aka. column) index -->
+	                        <bean class="org.apache.ignite.cache.QueryIndex">
+	                            <constructor-arg value="name"/>
+	                        </bean>
+	                      
+	                        <!-- Group index sample. -->
+	                        <bean class="org.apache.ignite.cache.QueryIndex">
+	                            <constructor-arg>
+	                                <list>
+	                                    <value>animal</value>
+	                                    <value>age</value>
+	                                </list>
+	                            </constructor-arg>
+	                            <constructor-arg value="SORTED"/>
+	                        </bean>
+	                    </list>
+	                </property>
+	            </bean>
+	        </list>
+	    </property>
+	</bean>
+	
+</beans>
