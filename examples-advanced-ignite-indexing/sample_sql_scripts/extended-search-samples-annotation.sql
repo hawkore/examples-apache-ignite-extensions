@@ -61,11 +61,11 @@ SELECT * FROM "PERSONS2".PERSON USE INDEX (PERSON_LUCENE_IDX)
 WHERE lucene = '{ refresh : true}';
 
 -- Boolean queries
-SELECT * FROM "PERSONS2".PERSON 
+SELECT * FROM "PERSONS2".PERSON
 WHERE lucene = '{ query : {
                               type : "boolean",
                               must : [{type : "wildcard", field : "name", value : "J*"},
-                                      {type : "wildcard", field : "food", value : "J*"}]}}';
+                                      {type : "wildcard", field : "food", value : "tu*"}]}}';
 
 SELECT * FROM "PERSONS2".PERSON 
 WHERE lucene = '{ query : {

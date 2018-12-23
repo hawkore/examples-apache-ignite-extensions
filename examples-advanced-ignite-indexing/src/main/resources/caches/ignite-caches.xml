@@ -211,5 +211,61 @@
 	        </list>
 	    </property>
 	</bean>
+
+	<!-- QueryEntity Based Configuration for String valueType. As you know this could be do it programmatically :) -->	
+	<bean id="stringCache" class="org.apache.ignite.configuration.CacheConfiguration">
+	    <property name="name" value="str"/>
+	    
+	    <!-- Configure query entities -->
+	    <property name="queryEntities">
+	        <list>
+	            <bean class="org.apache.ignite.cache.QueryEntity">
 	
+		            <property name="tableName" value="TABLE"/>
+	                		 
+		             <!-- Setting indexed type's key SIMPLE class -->
+	                <property name="keyType" 
+	                		 value="java.lang.Integer"/>
+		
+		             <!-- Setting indexed type's value SIMPLE class -->
+	                <property name="valueType"
+	                          value="java.lang.String"/>                          
+					
+					<!-- Defining indexed fields.-->
+	                <property name="indexes">
+	                    <list>
+	                    	<!-- Defining lucene index on _key and _val (key and value cache entry).-->
+	                        <bean class="org.apache.ignite.cache.QueryIndex">
+	                            <constructor-arg>
+	                                <list>
+	                                    <value>LUCENE</value>
+	                                </list>
+	                            </constructor-arg>
+	                            <constructor-arg value="FULLTEXT"/>
+	                            
+				                <!-- Defining advanced lucene index configuration.-->	
+								<property name="luceneIndexOptions">
+								    <value><![CDATA[{
+								    'version':'0',
+								    'refresh_seconds':'60',
+								    'directory_path':'',
+								    'ram_buffer_mb':'10',
+								    'max_cached_mb':'-1',
+								    'optimizer_enabled':'true',
+								    'optimizer_schedule':'0 1 * * *',
+								    'schema':'{
+								    		   "fields":{
+								    		   		"_KEY":{"type":"integer","validated":false},
+								    		   		"_VAL":{"type":"text","validated":false,"analyzer":"standard"}
+								    		   		}
+								    		  }'
+								     }]]></value>
+								</property>	                            
+	                        </bean>
+	                    </list>
+	                </property>					
+	            </bean>
+	        </list>
+	    </property>
+	</bean>
 </beans>

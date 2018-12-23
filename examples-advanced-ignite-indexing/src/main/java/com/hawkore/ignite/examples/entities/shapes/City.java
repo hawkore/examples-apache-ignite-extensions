@@ -20,8 +20,7 @@ import org.apache.ignite.cache.query.annotations.QueryTextField;
 import org.apache.ignite.cache.query.annotations.QueryTextField.GeoShapeMapper;
 import org.apache.ignite.cache.query.annotations.QueryTextField.GeoShapeMapper.GeoTransformation;
 import org.apache.ignite.cache.query.annotations.QueryTextField.GeoTransformationType;
-
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * City

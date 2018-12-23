@@ -12,3 +12,5 @@ mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.IgniteServerNode" -D
 mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.IgniteServerNode" -Dexec.classpathScope=compile -DnodeName=node2
 ```
 
+
+Visit [Hawkore's home page](https://www.hawkore.com).

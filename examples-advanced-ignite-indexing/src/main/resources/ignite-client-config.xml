@@ -36,6 +36,7 @@
 				<ref bean="persons2Cache" />
 				<ref bean="blogCache" />
 				<ref bean="profilesCache" />
+				<ref bean="stringCache" />								
 			</list>
 		</property>
 		<property name="sqlFunctionClasses">

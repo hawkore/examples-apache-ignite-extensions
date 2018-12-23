@@ -27,8 +27,7 @@ import org.apache.ignite.cache.query.annotations.QueryTextField.IndexOptions;
 import org.apache.ignite.cache.query.annotations.QueryTextField.IntegerMapper;
 import org.apache.ignite.cache.query.annotations.QueryTextField.StringMapper;
 import org.apache.ignite.cache.query.annotations.QueryTextField.TextMapper;
-
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * Tweet

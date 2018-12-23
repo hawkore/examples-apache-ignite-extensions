@@ -1,7 +1,7 @@
 ## Samples for Hawkore's Apache Ignite Advanced Indexing
 
 This maven project contains sample source code used on [Hawkore's Apache Ignite Advanced Indexing
-](https://docs.hawkore.com/apache-ignite-advanced-indexing) documentation.
+](https://docs.hawkore.com/private/apache-ignite-advanced-indexing) documentation.
 
 **NOTE**: You must start Apache Ignite Servers before running this samples. See [README.md](../ignite-server-node-test/README.md) for more info.
 
@@ -22,3 +22,6 @@ mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.SQLQueryRunner" -Dex
 ```
 
 Run SQL samples located in `examples-advanced-ignite-indexing/sample_sql_scripts` directory within SQL query runner.
+
+
+Visit [Hawkore's home page](https://www.hawkore.com).

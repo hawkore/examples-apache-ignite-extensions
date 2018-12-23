@@ -23,9 +23,9 @@ import org.apache.ignite.cache.query.annotations.QueryTextField.GeoTransformatio
 import org.apache.ignite.cache.query.annotations.QueryTextField.IndexOptions;
 import org.apache.ignite.cache.query.annotations.QueryTextField.IntegerMapper;
 import org.apache.ignite.cache.query.annotations.QueryTextField.StringMapper;
+import org.locationtech.jts.geom.Geometry;
 
 import com.hawkore.ignite.lucene.MultiValueIsoText;
-import com.vividsolutions.jts.geom.Geometry;
 
 /**
  * Poi
