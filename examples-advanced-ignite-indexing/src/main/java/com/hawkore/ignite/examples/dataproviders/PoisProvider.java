@@ -45,7 +45,7 @@ public class PoisProvider implements Supplier<Poi> {
 
     private static final GeometryFactory DEFAULT_GEO_FACTORY = new GeometryFactory(new PrecisionModel(), 4326); //EPSG: 4326 - lat long
     
-    private final int tweetsNumber;
+    private final int poisNumber;
 
     private int processed;
 
@@ -77,8 +77,8 @@ public class PoisProvider implements Supplier<Poi> {
      * @param countryCode
      * @param initKey
      */
-    public PoisProvider(int tweetsNumber, String countryCode, int initKey) {
-        this.tweetsNumber = tweetsNumber;
+    public PoisProvider(int poisNumber, String countryCode, int initKey) {
+        this.poisNumber = poisNumber;
         this.processed = 0;
         this.init = System.currentTimeMillis();
         this.random = new Random();
@@ -91,7 +91,7 @@ public class PoisProvider implements Supplier<Poi> {
     @Override
     public synchronized Poi get() {
 
-        if (processed < tweetsNumber) {
+        if (processed < poisNumber) {
 
             if (processed != 0 && processed % LOG_EVERY == 0) {
                 System.out.format("Injected %d pois in %d ms\n", LOG_EVERY,
