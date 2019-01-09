@@ -2,6 +2,7 @@
 
 Hi! This is Hawkore's extensions for Apache Ignite - samples project.
 
+![advanced-indexing](assets/advanced-indexing.png)
 
 - Requirements
 
