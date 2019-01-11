@@ -25,5 +25,6 @@ Hi! This is Hawkore's extensions for Apache Ignite - samples project.
 * `examples-advanced-ignite-indexing`: Contains sample source code for [Hawkore's Apache Ignite Advanced Indexing
 ](https://docs.hawkore.com/private/apache-ignite-advanced-indexing/) documentation. See [README.md](examples-advanced-ignite-indexing/README.md) for more info.
 
+# Other resources
 
-Visit [Hawkore's home page](https://www.hawkore.com).
+Sign up at [www.hawkore.com](https://www.hawkore.com) to access full documentation.
