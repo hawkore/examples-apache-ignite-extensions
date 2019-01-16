@@ -21,7 +21,7 @@ mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateTwee
 mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.SQLQueryRunner" -Dexec.classpathScope=compile -DnodeName=query
 ```
 
-Run SQL samples located in `examples-advanced-ignite-indexing/sample_sql_scripts` directory within SQL query runner.
+Run SQL samples located in [examples-advanced-ignite-indexing/sample_sql_scripts](sample_sql_scripts) directory within SQL query runner.
 
 
 Visit [Hawkore's home page](https://www.hawkore.com).
