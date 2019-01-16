@@ -9,16 +9,16 @@ This maven project contains sample source code used on [Hawkore's Apache Ignite 
 
 - 1. **Populate caches (once)**: Open a terminal from `examples-apache-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
 ```
-mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateProfiles" -Dexec.classpathScope=compile -DnodeName=populator
+mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateProfiles" -Dexec.classpathScope=compile -DnodeName=populator
 
-mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulatePois" -Dexec.classpathScope=compile -DnodeName=populator
+mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulatePois" -Dexec.classpathScope=compile -DnodeName=populator
 
-mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateTweets" -Dexec.classpathScope=compile -DnodeName=populator
+mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateTweets" -Dexec.classpathScope=compile -DnodeName=populator
 ```
 
 - 2. **Start SQL query runner**: This is a testing application to run SQL queries from a terminal. Open a terminal from `examples-apache-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
 ```
-mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.SQLQueryRunner" -Dexec.classpathScope=compile -DnodeName=query
+mvn compile exec:java -Dexec.mainClass="com.hawkore.ignite.examples.SQLQueryRunner" -Dexec.classpathScope=compile -DnodeName=query
 ```
 
 Run SQL samples located in `examples-advanced-ignite-indexing/sample_sql_scripts` directory within SQL query runner.
