@@ -14,8 +14,8 @@ Hi! This is Hawkore's extensions for Apache Ignite - samples project.
 
 ## Clone
 
-	-  Clone this project: `git clone http://github.com/hawkore/examples-advanced-ignite-extensions.git`
-	-  Change to directory: `cd examples-advanced-ignite-extensions`
+	-  Clone this project: `git clone https://github.com/hawkore/examples-apache-ignite-extensions.git`
+	-  Change to directory: `cd examples-apache-ignite-extensions`
 
 
 ## Content

@@ -7,7 +7,7 @@ This maven project contains sample source code used on [Hawkore's Apache Ignite 
 
 ### Steps for testing
 
-- 1. **Populate caches (once)**: Open a terminal from `examples-advanced-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
+- 1. **Populate caches (once)**: Open a terminal from `examples-apache-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
 ```
 mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateProfiles" -Dexec.classpathScope=compile -DnodeName=populator
 
@@ -16,7 +16,7 @@ mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulatePois" -Dexec
 mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.PopulateTweets" -Dexec.classpathScope=compile -DnodeName=populator
 ```
 
-- 2. **Start SQL query runner**: This is a testing application to run SQL queries from a terminal. Open a terminal from `examples-advanced-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
+- 2. **Start SQL query runner**: This is a testing application to run SQL queries from a terminal. Open a terminal from `examples-apache-ignite-extensions` directory, change to `examples-advanced-ignite-indexing` directory and run:
 ```
 mvn exec:java -Dexec.mainClass="com.hawkore.ignite.examples.SQLQueryRunner" -Dexec.classpathScope=compile -DnodeName=query
 ```
