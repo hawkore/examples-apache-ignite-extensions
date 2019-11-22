@@ -1,17 +1,17 @@
 # Hawkore's extensions for Apache Ignite
 
+_[Apache Ignite(TM)](https://ignite.apache.org) is a memory-centric distributed database, caching, and processing platform for
+transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale._
+
+![advanced-indexing](assets/advanced-indexing.png)
+
+*All company names, logos, brand names and trademarks are property of their respective owners. All company, product and service names used in this website are for identification purposes only.*
+
 Expand the indexing, persistence and schema mutation capabilities of Apache Ignite's distributed SQL database.
 
 - Instantly deploy a reliable cluster after reboot, using Apache Lucene and H2 Spatial indexes with disk persistence and automatic re-indexing.
 - Combine Apache Ignite's SQL capabilities with Apache Lucene's extended filters.
 - Modify Apache Ignite's SQL schemes with no need to restart and zero loss of data.
-
-"Apache Ignite(TM) is a memory-centric distributed database, caching, and processing platform for
-transactional, analytical, and streaming workloads, delivering in-memory speeds at petabyte scale."
-
-![advanced-indexing](assets/advanced-indexing.png)
-
-*All company names, logos, brand names and trademarks are property of their respective owners. All company, product and service names used in this website are for identification purposes only.*
 
 ## Requirements
 
