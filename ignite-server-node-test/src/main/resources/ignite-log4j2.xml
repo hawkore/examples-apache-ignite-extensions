@@ -60,7 +60,7 @@
 <!--         <AsyncLogger name="org.apache.ignite.cache.query" level="TRACE"/> -->
 <!--         <AsyncLogger name="org.apache.ignite.internal.processors.cache.query" level="TRACE"/>       -->
 <!--         <AsyncLogger name="com.hawkore.ignite.internal.processors.query.h2.opt.lucene.partitioning.PartitionerOnToken" level="DEBUG"/> -->
-         
+
         <Root level="INFO">
             <!-- Uncomment to enable logging to console. -->
             <AppenderRef ref="CONSOLE" level="TRACE"/>
